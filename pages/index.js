@@ -3,14 +3,23 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import ListItem from '@material-ui/core/ListItem';
+import { useRouter } from 'next/router'
 
 function getMenus() {
-  return [
-    { name: '아아', count: 0 },
-    { name: '아라', count: 0 },
-    { name: '따아', count: 0 },
-    { name: '따라', count: 0 },
-  ];
+  const router = useRouter()
+  console.log(router.query);
+  console.log(router.query.menus);
+  if (router && router.query && router.query.menus) {
+    const menuList = router.query.menus.split(',');
+    return menuList.map(menu => ({ name: decodeURIComponent(menu), count: 0 }));
+  } else {
+    return [
+      { name: '아아', count: 0 },
+      { name: '아라', count: 0 },
+      { name: '따아', count: 0 },
+      { name: '따라', count: 0 },
+    ];
+  }
 }
 
 function App() {
