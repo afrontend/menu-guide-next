@@ -7,10 +7,11 @@ import { useRouter } from 'next/router'
 
 function getMenus() {
   const router = useRouter()
-  console.log(router.query);
-  console.log(router.query.menus);
+  console.log(router.query)
   if (router && router.query && router.query.menus) {
+    console.log(router.query.menus)
     const menuList = router.query.menus.split(',');
+    console.log(menuList)
     return menuList.map(menu => ({ name: decodeURIComponent(menu), count: 0 }));
   } else {
     return [
@@ -49,6 +50,13 @@ function App() {
     return '?menus=' + menuList.map(m => m.name).join(',');
   }
 
+  function Link({ menuList, origin }) {
+    const url = origin + useRouter().pathname + getUrlParameter(menuList);
+    return (
+      <a href={url}>{url}</a>
+    );
+  }
+
   function Menu({ menu }) {
     const m = menu.menu;
     const index = menu.index;
@@ -81,6 +89,13 @@ function App() {
   }
 
   const [ newMenuName, setNewMenuName ] = useState('');
+  const [ origin, setOrigin ] = useState('');
+
+  setTimeout(function() {
+    if(process.browser) {
+      setOrigin(global.window.location.origin);
+    }
+  }.bind(this), 1000);
 
   function addMenu() {
     if (newMenuName) {
@@ -104,6 +119,9 @@ function App() {
           return <Menu key={index} menu={menu} />;
         })
       }
+      <ListItem>
+        <Link menuList={menuList} origin={origin} />
+      </ListItem>
     </div>
   );
 }
