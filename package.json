@@ -2,10 +2,12 @@
   "name": "menu-guide-next",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://afrontend.github.io/game/menu-guide-next",
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "next start -p 8080"
+    "start": "next start -p 8080",
+    "export": "next export"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.3",
