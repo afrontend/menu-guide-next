@@ -106,10 +106,16 @@ function App() {
     }
   }
 
+  function keyPress(e) {
+    if (e.key === 'Enter') {
+      addMenu();
+    }
+  }
+
   return (
     <div className="App">
       <ListItem>
-        <TextField value={newMenuName} onChange={e => setNewMenuName(e.target.value)} id="standard-basic" label="Menu Name" />
+        <TextField value={newMenuName} onKeyPress={ keyPress } onChange={e => setNewMenuName(e.target.value)} id="standard-basic" label="Menu Name" />
         <Button variant="contained" color="primary" onClick={ addMenu }>이거요</Button>
       </ListItem>
       {
