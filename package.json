@@ -2,7 +2,7 @@
   "name": "menu-guide-next",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://afrontend.github.io/game/menu-guide-next",
+  "homepage": "/menu-guide-next",
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
